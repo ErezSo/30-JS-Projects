@@ -59,6 +59,16 @@
 
 <script>
 
+window.addEventListener('keydown', function(e) {
+  // Get the audio associated with the pressed key
+  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+  if (!audio) return;
+
+  // Clear audio before playing
+  audio.currentTime = 0;
+  audio.play();
+})
+
 </script>
 
 
