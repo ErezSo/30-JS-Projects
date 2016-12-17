@@ -62,12 +62,25 @@
 window.addEventListener('keydown', function(e) {
   // Get the audio associated with the pressed key
   const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-  if (!audio) return;
+  const box = document.querySelector(`div[data-key="${e.keyCode}"]`);
 
+  if (!audio) return;
   // Clear audio before playing
   audio.currentTime = 0;
   audio.play();
+
+  box.classList.add('playing');
 })
+
+function removeTransition(e) {
+  if (e.propertyName !== 'transform') return;
+  this.classList.remove('playing');
+}
+
+const boxes = document.querySelectorAll('.key');
+boxes.forEach(box => box.addEventListener('transitionend', removeTransition));
+
+
 
 </script>
 
